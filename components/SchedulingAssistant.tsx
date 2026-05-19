@@ -54,8 +54,9 @@ export default function SchedulingAssistant() {
     try {
       await googleSignIn();
       // Auth state will be updated by initAuth listener
-    } catch (err) {
+    } catch (err: any) {
       console.error('Login failed:', err);
+      alert('Login failed: ' + (err.message || 'Unknown error. Check console for details. (If hosting on Vercel, ensure your domain is added to Firebase Authorized Domains)'));
     } finally {
       setIsLoggingIn(false);
     }
