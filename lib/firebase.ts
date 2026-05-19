@@ -13,20 +13,11 @@ let isSigningIn = false;
 let cachedAccessToken: string | null = null;
 
 export const initAuth = (
-  onAuthSuccess?: (user: User, token: string) => void,
-  onAuthFailure?: () => void
+  onAuthStateKnown?: (user: User | null, token: string | null) => void
 ) => {
   return onAuthStateChanged(auth, async (user: User | null) => {
-    if (user) {
-      if (cachedAccessToken) {
-        if (onAuthSuccess) onAuthSuccess(user, cachedAccessToken);
-      } else if (!isSigningIn) {
-        cachedAccessToken = null;
-        if (onAuthFailure) onAuthFailure();
-      }
-    } else {
-      cachedAccessToken = null;
-      if (onAuthFailure) onAuthFailure();
+    if (onAuthStateKnown) {
+      onAuthStateKnown(user, cachedAccessToken);
     }
   });
 };

@@ -36,24 +36,27 @@ export default function SchedulingAssistant() {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = initAuth(
-      (user) => {
+    const unsubscribe = initAuth((user, token) => {
+      // We only consider them fully authed for this session if we have BOTH a user AND the google access token for calendar
+      if (user && token) {
         setUser(user);
         setNeedsAuth(false);
-      },
-      () => {
+      } else {
         setUser(null);
         setNeedsAuth(true);
       }
-    );
+    });
     return () => unsubscribe();
   }, []);
 
   const handleLogin = async () => {
     setIsLoggingIn(true);
     try {
-      await googleSignIn();
-      // Auth state will be updated by initAuth listener
+      const result = await googleSignIn();
+      if (result) {
+        setUser(result.user);
+        setNeedsAuth(false);
+      }
     } catch (err: any) {
       console.error('Login failed:', err);
       alert('Login failed: ' + (err.message || 'Unknown error. Check console for details. (If hosting on Vercel, ensure your domain is added to Firebase Authorized Domains)'));
