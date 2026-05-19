@@ -1,0 +1,6 @@
+{
+  "name": "Global Sync",
+  "description": "Smart global scheduling assistant generating multi-time-zone Google Calendar invites.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
