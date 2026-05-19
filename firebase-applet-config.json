@@ -1,8 +1,9 @@
-{
-  "apiKey": "AIzaSy...",
-  "authDomain": "your-project.firebaseapp.com",
-  "projectId": "your-project",
-  "storageBucket": "your-project.appspot.com",
-  "messagingSenderId": "123456789",
-  "appId": "1:123456789:web:abcdef123456"
-}
+const firebaseConfig = {
+  apiKey: "AIzaSyAspwUOXIKdFvPDUoZZwsV385o_y_LXC6w",
+  authDomain: "sincro-scheduler.firebaseapp.com",
+  projectId: "sincro-scheduler",
+  storageBucket: "sincro-scheduler.firebasestorage.app",
+  messagingSenderId: "420630648641",
+  appId: "1:420630648641:web:cbda1a97aaf6aa9501f3c0",
+  measurementId: "G-85Z5EVR56Y"
+};
